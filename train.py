@@ -36,7 +36,7 @@ def _get_optimizer_and_scheduler(model: nn.Module, model_name: str) -> Tuple[opt
     import torch.optim.lr_scheduler as lr_scheduler
 
     if model_name == "mobilenet":
-        optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
+        optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=0.0002)
         scheduler = lr_scheduler.ReduceLROnPlateau(
             optimizer, mode="min", factor=0.5, patience=5, min_lr=1e-7
         )

@@ -36,8 +36,8 @@ if not hasattr(pd.DataFrame, "append"):
 
 # Optional caps for the number of samples used during optimisation trials.
 # Set to an integer (e.g., 1024) to subsample, or leave as None to use all data.
-OPTIM_TRAIN_MAX_SAMPLES: Optional[int] = 2400
-OPTIM_VAL_MAX_SAMPLES: Optional[int] = 1200
+OPTIM_TRAIN_MAX_SAMPLES: Optional[int] = 6000
+OPTIM_VAL_MAX_SAMPLES: Optional[int] = 3000
 
 def _make_serializable(value: Any) -> Any:
     if isinstance(value, float) and math.isnan(value):
@@ -119,17 +119,17 @@ def _create_algorithm(name: str, max_trials: int) -> Algorithm:
 def _parameter_space(model_name: str) -> Iterable[Parameter]:
     if model_name == "mobilenet":
         return [
-            Continuous("lr", [1e-5, 1e-2], scale="log"),
-            Choice("batch_size", [16, 32]),
-            Choice("width_mult", [0.75, 1.0, 1.25]),
-            Continuous("label_smoothing", [0.0, 0.2]),
+            Continuous("lr", [1e-5, 1e-3], scale="log"),
+            Choice("batch_size", [16]),
+            # Choice("width_mult", [0.75, 1.0, 1.25]),
+            # Continuous("label_smoothing", [0.0, 0.0]),
             Continuous("weight_decay", [1e-5, 1e-3], scale="log"),
-            Choice("optimizer", ["adam", "adamw"]),
+            Choice("optimizer", ["adamw"]),
             Choice("scheduler", ["plateau"]),
             # Continuous("plateau_factor", [0.2, 0.8]),
             # Discrete("plateau_patience", [3, 5, 8]),
             # Continuous("min_lr", [1e-7, 1e-4], scale="log"),
-            Discrete("max_epochs", [15, 20, 25]),
+            Choice("max_epochs", [10]),
         ]
     return [
         Continuous("lr", [1e-6, 1e-3], scale="log"),
@@ -140,7 +140,7 @@ def _parameter_space(model_name: str) -> Iterable[Parameter]:
         Choice("scheduler", ["step"]),
         Discrete("step_size", [10, 15, 20]),
         Continuous("step_gamma", [0.2, 0.8]),
-        Discrete("max_epochs", [15, 20, 25]),
+        Discrete("max_epochs", [10,11]),
     ]
 
 

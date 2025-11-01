@@ -85,7 +85,7 @@ def raytune(args):
                 optimizer = optim.AdamW(
                     model.parameters(),
                     lr=config["lr"],
-                    weight_decay=config.get("weight_decay", 1e-4),
+                    weight_decay=config.get("weight_decay", 0.0002),
                 )
             else:
                 optimizer = optim.Adam(model.parameters(), lr=config["lr"])
