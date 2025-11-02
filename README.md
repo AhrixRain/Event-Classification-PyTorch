@@ -1,4 +1,4 @@
-# Event Classification — Enhanced PyTorch Version
+# Event Classification PyTorch with Sherpa
 
 This repository integrated **Sherpa optimization** on [mrheng9/Event-Classification-PyTorch](https://github.com/mrheng9/Event-Classification-PyTorch) into a **complete, reproducible machine learning workflow**.  
 
