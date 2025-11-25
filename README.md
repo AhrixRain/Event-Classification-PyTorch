@@ -24,3 +24,7 @@ cd Event-Classification-PyTorch
 
 # Install deps (pins reduce weird version conflicts, esp. with Sherpa & NumPy)
 pip install -r requirements.txt
+
+# Run the optimization by
+python model_optim.py --model <model_name>
+```
